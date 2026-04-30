@@ -218,6 +218,15 @@
       .question { font-size: 18px; }
     }
   </style>
+  <style>
+    @media print {
+      body { background: white; padding: 0; }
+      .card { box-shadow: none; max-width: 100%; border-radius: 0; }
+      .btn-share, .btn-reset, .action-row { display: none !important; }
+      #intro-view, #quiz-view { display: none !important; }
+      #result-view { display: block !important; }
+    }
+  </style>
 </head>
 <body>
 <div class="card" id="main-card">
@@ -448,13 +457,8 @@ function buildShareText(area, ans) {
   return 'Mein größtes Klima-Potenzial liegt im Bereich ' + area + ' 🌱\n\n' + adv.intro + '\n' + tips;
 }
 
-function shareResult() {
-  if (navigator.share) {
-    navigator.share({
-      title: 'Mein Klima-Potenzial',
-      text: shareText,
-    }).catch(() => {});
-  }
+function savePDF() {
+  window.print();
 }
 
 function showResult() {
@@ -491,7 +495,7 @@ function showResult() {
 
   html += `
     <div class="action-row">
-      <button class="btn-share" onclick="shareResult()">↗ Ergebnis teilen</button>
+      <button class="btn-share" onclick="savePDF()">⬇ Als PDF speichern</button>
       <button class="btn-reset" onclick="resetQuiz()">↩ Quiz neu starten</button>
     </div>
     <p style="text-align:center; font-size:13px; color:var(--text-muted); margin-top:1.25rem;">💡 Tipp: Speichere dir einen Screenshot mit deinem Ergebnis ab :-)</p>
