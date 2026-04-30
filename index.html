@@ -322,7 +322,9 @@ function render() {
     opts.appendChild(btn);
   });
   const next = document.getElementById('btn-next');
-  selected !== null ? next.classList.add('active') : next.classList.remove('active');
+  if (next) {
+    selected !== null ? next.classList.add('active') : next.classList.remove('active');
+  }
 }
 
 function nextStep() {
@@ -491,7 +493,6 @@ function resetQuiz() {
   document.getElementById('quiz-view').style.display = 'none';
   document.getElementById('result-view').style.display = 'none';
 }
-render();
 </script>
 </body>
 </html>
